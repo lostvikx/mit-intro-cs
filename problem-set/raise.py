@@ -28,6 +28,8 @@ def getRatios(vect1, vect2):
   Returns: a list containing ratios.
   """
 
+  assert len(vect1) == len(vect2), "length of vect1 and vect2: not equal"
+
   ratios = []
 
   for num1, num2 in zip(vect1, vect2):
