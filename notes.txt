@@ -227,3 +227,7 @@ An exception can and should be handled by the program.
 
 A function is called polymorphic if the arguments of many different types.
 
+The python raise statement forces a specified exception to occur.
+> raise exceptionName(args)
+
+We can define new exceptions by creating a subclass of the built-in-class Exception.
