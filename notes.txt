@@ -241,3 +241,9 @@ When we instantiate a class, we trigger call the __init__() method. If a instanc
 
 When data attributes are associated with a class we call them class variables. When they are associated with an instance we call them instance variables.
 
+Data abstractions encourages one to think about programming as a process of combining relatively large chunks, which leads us to think of the essence of programming as a process of composing abstractions, rather than individual lines of code.
+
+Directly accessing instance variables is considered poor form of programming and should be avoided. Why though?
+
+Indian is a subclass of Human, and therefore inherits the attributes of its superclass.
+
