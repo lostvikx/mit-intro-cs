@@ -1,5 +1,5 @@
 import datetime
-import try_except
+# import try_except
 
 # Person class inherits all the attributes of object class
 class Person(object):
@@ -47,9 +47,32 @@ class Person(object):
     """Returns person's number of days left to live, according to the average life expectancy"""
     return Person.avg_life_days - self.getAge()
 
-  def daysLived(self) -> int:
-    """Returns person's days lived in percentage int"""
+  def getPercentLived(self) -> int:
+    """Returns person's days lived in float percentage"""
     return round((self.getAge() / Person.avg_life_days)*100, 2)
+
+  def getLifeBar(self, bar_len=50) -> str:
+    """
+    Returns a string, a life bar to represent the percentage lived by a person.
+    Assumes that bar_len >= 10
+    """
+    assert bar_len >= 10, "Bar lenght should be atleast 10"
+
+    # self.getPercentLived() is float {percentage}
+    divide = 100/bar_len
+
+    # Round float (0 decimal) & divide to match ratio of the barLen
+    life = round(self.getPercentLived()/divide)
+    life_left = bar_len - life
+
+    # The LifeBar
+    bar_icon = "#"
+    # Format the bar
+    bar = f"{Colors.fail}{bar_icon*life}{Colors.end}{Colors.green}{bar_icon*life_left}{Colors.end}"
+
+    life_bar = f"[{bar}] -> {self.getPercentLived()}% Lived"
+
+    return f"{life_bar}, {Colors.warning}{self.getDaysLeft()}{Colors.end} days left!"
 
 
 me = Person("Vikram Negi")
@@ -59,37 +82,39 @@ me.setBirthday(datetime.date(2000, 9, 29))
 # my_life_lived = f"{me.getName()} has lived {me.lifeLived()}% of his life!"
 # print(my_life_lived)
 
-my_life = me.daysLived()
-
 class Colors:
+  blue = "\033[94m"
   green = "\033[92m"
+  warning = "\033[93m"
+  fail = "\033[91m"
+  bold = "\033[1m"
+  underline = "\033[4m"
   end = "\033[0m"
 
-# bar_len = 50
-# half_life = round((my_life/2))
-# bar_life = 50 - half_life
-# bar_icon = "#"
-# bar = f"{Colors.green}{bar_icon*half_life}{Colors.end}{bar_icon*bar_life}"
-# life_loading_bar = f"[{bar}] -> {my_life}% Lived"
-# print(life_loading_bar)
+# print(me.getLifeBar())
 
-def createBar(days_lived, bar_len=50) -> str:
-  # days_lived in percentage int
-  divide = 100/bar_len
-  life = round(days_lived/divide)
-  life_left = bar_len - life
-  bar_icon = "#"
-  bar = f"{Colors.green}{bar_icon*life}{Colors.end}{bar_icon*life_left}"
-  life_bar = f"[{bar}] -> {my_life}% Lived"
-  return life_bar
-
+# testing = try_except.sumDigits("sk21")
 
 # if __name__ == "__main__":
-#   print(createBar(me.daysLived()))
+#   print(createBar(me.getPercentLived()))
+#   print(f"main file = {__name__}")
+# else:
+#   print("not main file")
 
-testing = try_except.sumDigits("sk21")
+class ITMPerson(Person):
 
-if __name__ == "__main__":
-  print(f"main file = {__name__}")
-else:
-  print("not main file")
+  # class variable, not unique to an instance
+  idCount = 0
+
+  def __init__(self, name) -> None:
+    super().__init__(name)
+    self.idNum = 0
+    ITMPerson.idCount += 1
+
+  def getIdNum(self) -> int:
+    """Returns id"""
+    return self.idNum
+
+
+me2 = ITMPerson("Vikram Negi")
+print(me.getLifeBar())

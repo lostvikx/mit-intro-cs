@@ -19,7 +19,7 @@ def sumDigits(s):
 # print(sumDigits("shs2ksn5"))
 # print(f"try file = {__name__}")
 
-if __name__ != "__main__":
-  print(f"not main file, being imported as {__name__}")
-else:
-  print("__main__ file")
+# if __name__ != "__main__":
+#   print(f"not main file, being imported as {__name__}")
+# else:
+#   print("__main__ file")
