@@ -247,3 +247,5 @@ Directly accessing instance variables is considered poor form of programming and
 
 Indian is a subclass of Human, and therefore inherits the attributes of its superclass.
 
+Inheritance allows us to create a type hierarchy in which each type inherits attributes, data and methods, from the types above it in the hierarchy.
+
