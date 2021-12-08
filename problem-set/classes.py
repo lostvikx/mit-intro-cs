@@ -87,4 +87,9 @@ def createBar(days_lived, bar_len=50) -> str:
 # if __name__ == "__main__":
 #   print(createBar(me.daysLived()))
 
-print(__name__)
+testing = try_except.sumDigits("sk21")
+
+if __name__ == "__main__":
+  print(f"main file = {__name__}")
+else:
+  print("not main file")
