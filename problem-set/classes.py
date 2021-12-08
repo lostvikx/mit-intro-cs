@@ -91,7 +91,8 @@ class Colors:
   underline = "\033[4m"
   end = "\033[0m"
 
-# print(me.getLifeBar())
+print(me.getLifeBar())
+print(type(me) == Person)
 
 # testing = try_except.sumDigits("sk21")
 
@@ -117,4 +118,5 @@ class ITMPerson(Person):
 
 
 me2 = ITMPerson("Vikram Negi")
-print(me.getLifeBar())
+print(type(me2) == Person)  # False
+print(isinstance(me2, Person))  # Person is a superclass of ITMPerson
