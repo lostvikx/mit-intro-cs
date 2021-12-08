@@ -1,7 +1,6 @@
 def sumDigits(s):
   """
   Assume s is a str
-  
   Returns the sum of the numbers in s
   """
 
@@ -16,4 +15,5 @@ def sumDigits(s):
 
   return total_sum
 
-print(sumDigits("shs2ksn5"))
+
+# print(sumDigits("shs2ksn5"))

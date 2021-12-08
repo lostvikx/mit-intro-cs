@@ -1,5 +1,7 @@
 import datetime
+import try_except
 
+# Person class inherits all the attributes of object class
 class Person(object):
 
   # assumes avg life expectancy = 72 yrs
@@ -59,7 +61,7 @@ me.setBirthday(datetime.date(2000, 9, 29))
 
 my_life = me.daysLived()
 
-class colors:
+class Colors:
   green = "\033[92m"
   end = "\033[0m"
 
@@ -67,7 +69,7 @@ class colors:
 # half_life = round((my_life/2))
 # bar_life = 50 - half_life
 # bar_icon = "#"
-# bar = f"{colors.green}{bar_icon*half_life}{colors.end}{bar_icon*bar_life}"
+# bar = f"{Colors.green}{bar_icon*half_life}{Colors.end}{bar_icon*bar_life}"
 # life_loading_bar = f"[{bar}] -> {my_life}% Lived"
 # print(life_loading_bar)
 
@@ -77,8 +79,12 @@ def createBar(days_lived, bar_len=50) -> str:
   life = round(days_lived/divide)
   life_left = bar_len - life
   bar_icon = "#"
-  bar = f"{colors.green}{bar_icon*life}{colors.end}{bar_icon*life_left}"
+  bar = f"{Colors.green}{bar_icon*life}{Colors.end}{bar_icon*life_left}"
   life_bar = f"[{bar}] -> {my_life}% Lived"
   return life_bar
 
-print(createBar(me.daysLived()))
+
+# if __name__ == "__main__":
+#   print(createBar(me.daysLived()))
+
+print(__name__)
