@@ -8,7 +8,7 @@ class Person(object):
   # while converting to days, not accouting for leap years
   avg_life_days = 72*365 # class variable
 
-  def __init__(self, name) -> None:
+  def __init__(self, name:str) -> None:
     """Create a person"""
 
     self.name = name
@@ -107,7 +107,7 @@ class ITMPerson(Person):
   # class variable, not unique to an instance
   idCount = 0
 
-  def __init__(self, name) -> None:
+  def __init__(self, name:str) -> None:
     super().__init__(name)
     self.idNum = ITMPerson.idCount
     ITMPerson.idCount += 1
@@ -181,7 +181,7 @@ def gradeReport(subject:Grades) -> str:
   Returns grade report as a string."""
 
   report = ""
-  
+
   for stud in subject.getStudents():
     totalMarks = 0  # Total Marks
     nSubs = 0  # Total Subjects
@@ -218,10 +218,13 @@ math.addGrade(s2, 65)
 math.addGrade(s3, 70)
 
 # print(math.getStudents())  # ['Cal Newport', 'Dale Carnegie', 'Vikram Negi']
-# print(math.grades)
 # print(math.getGrades(s1))
 
 # print(type(s1) == Student)  # True
 # print(isinstance(s1, Student))  # True
+
+s4 = Student("Jordan Peterson")
+math.addStudent(s4)
+# print(math.grades)
 
 print(gradeReport(math))
