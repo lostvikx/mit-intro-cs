@@ -117,7 +117,7 @@ class ITMPerson(Person):
     return self.idNum
 
   def __lt__(self, other) -> bool:
-    """"""
+    """Sort idNum in ascending order."""
     return self.idNum < other.idNum
 
 
@@ -200,6 +200,7 @@ def gradeReport(subject:Grades) -> str:
 
   return report
 
+# Tests
 s1 = Student("Vikram Negi")
 s2 = Student("Dale Carnegie")
 s3 = Student("Cal Newport")
