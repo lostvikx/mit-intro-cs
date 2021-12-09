@@ -261,3 +261,9 @@ Some programming languages lik Java and C++ provide mechanisms for enforcing inf
 This is a flaw in Python, as it lets programs read instance and class variables from outside the class definition that means user/client can change or even add important data attributes from outside the class, which can produce a runtime error.
 
 A disciplined programmer can simply follow the sensible rule of not direcly accessing data attributes from outside the class in which they are defined.
+
+
+Yield Statements
+The presence of a yield statement tells that the function is a generator. Generators are typically used in conjunction with for statements.
+
+A for loop can iterate over the values provided by a method regardless of whether the method returns a list of values or yields a single value at a time.

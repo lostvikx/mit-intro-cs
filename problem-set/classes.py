@@ -138,6 +138,7 @@ class Grades(object):
     """Create instance variable, an empty grade book."""
     self.students = []
     self.grades = {}
+    self.isSorted = True
 
   def addStudent(self, student:Student) -> None:
     """Assumes student is of type Student.
@@ -149,6 +150,9 @@ class Grades(object):
     self.students.append(student)
     # Using idNum as keys with Values being the None initially
     self.grades[student.getIdNum()] = []
+
+    if self.isSorted:
+      self.isSorted = False
 
   def addGrade(self, student:Student, grade:float) -> None:
     """Append grade as the value of grades dict."""
@@ -166,12 +170,24 @@ class Grades(object):
     except:
       raise ValueError("Add student to the grade book")
 
-  def getStudents(self) -> list:
-    """Returns a sorted list of students."""
+  # def getStudents(self) -> list:
+  #   """Returns a sorted list of students."""
     
-    # With sorted we can get rid of the sorted array mutation problem, no side-effects (functional rocks!)
+  #   # With sorted we can get rid of the sorted array mutation problem, no side-effects (functional rocks!)
+  #   # Using this method is inefficient, because a new list is created.
+  #   return sorted(self.students)
 
-    return sorted(self.students)
+  def getStudents(self):
+    """Returns the students in the grade book one at a time."""
+
+    # Sort list of students
+    if not self.isSorted:
+      self.students.sort()
+      self.isSorted = True
+
+    # Yields on stud at a time, as opposed to returning a list of students.
+    for stud in self.students:
+      yield stud
 
   
 
@@ -182,6 +198,8 @@ def gradeReport(subject:Grades) -> str:
 
   report = ""
 
+  # Now, getStudents method doesn't return a list.
+  # It yields one Student type at a time, making the computation faster.
   for stud in subject.getStudents():
     totalMarks = 0  # Total Marks
     nSubs = 0  # Total Subjects
