@@ -250,3 +250,5 @@ Indian is a subclass of Human, and therefore inherits the attributes of its supe
 Inheritance allows us to create a type hierarchy in which each type inherits attributes, data and methods, from the types above it in the hierarchy.
 
 When defining a subclass, think of it as extending the behavior of their superclass. As we can add new attributes or override attributes inherited from the superclass.
+
+If client code works correctly using an instance of the supertype, it should also work correctly when an instance of the subtype is substitued for the instance of the supertype. But not necessarily the other way round.

@@ -30,7 +30,7 @@ class Person(object):
     return self.lastName
 
   def setBirthday(self, birthdate) -> None:
-    """Assumes birthdate is of type datetime.date, {year, month, date}"""
+    """Assumes birthdate is of type datetime.date(year, month, date)"""
     self.birthday = birthdate
 
   def getAge(self) -> int:
@@ -75,8 +75,8 @@ class Person(object):
     return f"{life_bar}, {Colors.warning}{self.getDaysLeft()}{Colors.end} days left!"
 
 
-me = Person("Vikram Negi")
-me.setBirthday(datetime.date(2000, 9, 29))
+# me = Person("Vikram Negi")
+# me.setBirthday(datetime.date(2000, 9, 29))
 # my_current_age = f"{me.getName()} is {me.getAge()} days old!"
 # print(my_current_age)
 # my_life_lived = f"{me.getName()} has lived {me.lifeLived()}% of his life!"
@@ -91,8 +91,8 @@ class Colors:
   underline = "\033[4m"
   end = "\033[0m"
 
-print(me.getLifeBar())
-print(type(me) == Person)
+# print(me.getLifeBar())
+# print(type(me) == Person)
 
 # testing = try_except.sumDigits("sk21")
 
@@ -117,6 +117,66 @@ class ITMPerson(Person):
     return self.idNum
 
 
-me2 = ITMPerson("Vikram Negi")
-print(type(me2) == Person)  # False
-print(isinstance(me2, Person))  # Person is a superclass of ITMPerson
+# me2 = ITMPerson("Vikram Negi")
+# print(type(me2) == Person)  # False
+# print(isinstance(me2, Person))  # Person is a superclass of ITMPerson
+
+# Subclass of ITMPerson
+# Class hierarchy:
+# object -> Person -> ITMPerson -> Student
+class Student(ITMPerson):
+  pass
+
+class Grades(object):
+  """Mapping from students type to a list of grades"""
+
+  def __init__(self) -> None:
+    """Create instance variable, an empty grade book"""
+    self.students = []
+    self.grades = {}
+    # self.isSorted = True
+
+  def addStudent(self, student:Student) -> None:
+    """Assumes student is of type Student
+       Add student to the grade book"""
+
+    assert not student in self.students, "Student already in grade book"
+
+    self.students.append(student)
+    # Using idNum as keys with Values being the None initially
+    self.grades[student.getIdNum()] = []
+
+    # if self.isSorted:
+    #   self.isSorted = False
+
+  def addGrade(self, student:Student, grade:float) -> None:
+    """Add grade as the value of grades dict"""
+
+    try:
+      self.grades[student.getIdNum()].append(grade)
+    except:
+      raise ValueError("Add student to the grade book")
+
+  def getGrades(self, student:Student) -> list:
+    """Returns a list of grades"""
+    try:
+      return self.grades[student.getIdNum()][:]
+    except:
+      raise ValueError("Add student to the grade book")
+
+  def getStudents(self) -> list:
+    """Returns the list of students"""
+    # if not self.isSorted:
+    #   self.students.sort()
+    #   self.isSorted = True
+    
+    # With sorted we can get rid of the sorted array mutation problem, no side-effects (functional rocks!)
+    return sorted(self.students)
+
+    # Return only a copy of students
+    # return self.students[:]
+
+s1 = Student("Vikram Negi")
+s2 = Student("Harrison Harlow")
+s3 = Student("Barbara Liskov")
+
