@@ -109,12 +109,16 @@ class ITMPerson(Person):
 
   def __init__(self, name) -> None:
     super().__init__(name)
-    self.idNum = 0
+    self.idNum = ITMPerson.idCount
     ITMPerson.idCount += 1
 
   def getIdNum(self) -> int:
     """Returns id"""
     return self.idNum
+
+  def __lt__(self, other) -> bool:
+    """"""
+    return self.idNum < other.idNum
 
 
 # me2 = ITMPerson("Vikram Negi")
@@ -128,17 +132,17 @@ class Student(ITMPerson):
   pass
 
 class Grades(object):
-  """Mapping from students type to a list of grades"""
+  """Mapping from students type to a list of grades."""
 
   def __init__(self) -> None:
-    """Create instance variable, an empty grade book"""
+    """Create instance variable, an empty grade book."""
     self.students = []
     self.grades = {}
-    # self.isSorted = True
 
   def addStudent(self, student:Student) -> None:
-    """Assumes student is of type Student
-       Add student to the grade book"""
+    """Assumes student is of type Student.
+
+       Add student to the grade book."""
 
     assert not student in self.students, "Student already in grade book"
 
@@ -146,11 +150,8 @@ class Grades(object):
     # Using idNum as keys with Values being the None initially
     self.grades[student.getIdNum()] = []
 
-    # if self.isSorted:
-    #   self.isSorted = False
-
   def addGrade(self, student:Student, grade:float) -> None:
-    """Add grade as the value of grades dict"""
+    """Append grade as the value of grades dict."""
 
     try:
       self.grades[student.getIdNum()].append(grade)
@@ -158,25 +159,69 @@ class Grades(object):
       raise ValueError("Add student to the grade book")
 
   def getGrades(self, student:Student) -> list:
-    """Returns a list of grades"""
+    """Returns a copy of grades list."""
+
     try:
       return self.grades[student.getIdNum()][:]
     except:
       raise ValueError("Add student to the grade book")
 
   def getStudents(self) -> list:
-    """Returns the list of students"""
-    # if not self.isSorted:
-    #   self.students.sort()
-    #   self.isSorted = True
+    """Returns a sorted list of students."""
     
     # With sorted we can get rid of the sorted array mutation problem, no side-effects (functional rocks!)
+
     return sorted(self.students)
 
-    # Return only a copy of students
-    # return self.students[:]
+  
+
+def gradeReport(subject:Grades) -> str:
+  """Assumes subject as Grades type.
+  
+  Returns grade report as a string."""
+
+  report = ""
+  
+  for stud in subject.getStudents():
+    totalMarks = 0  # Total Marks
+    nSubs = 0  # Total Subjects
+
+    # For each student, loop over their grades
+    for grade in subject.getGrades(stud):
+      totalMarks += grade
+      nSubs += 1
+
+    try:
+      avg = round(totalMarks / nSubs, 2)
+    except:
+      avg = float("NaN")
+
+    report += f"{str(stud)}'s mean grade is {avg}\n"
+
+  return report
 
 s1 = Student("Vikram Negi")
-s2 = Student("Harrison Harlow")
-s3 = Student("Barbara Liskov")
+s2 = Student("Dale Carnegie")
+s3 = Student("Cal Newport")
 
+math = Grades()
+math.addStudent(s1)
+math.addStudent(s2)
+math.addStudent(s3)
+
+# Add 75 marks of all students
+for stud in math.getStudents():
+  math.addGrade(stud, 75)
+
+math.addGrade(s1, 90)
+math.addGrade(s2, 65)
+math.addGrade(s3, 70)
+
+# print(math.getStudents())  # ['Cal Newport', 'Dale Carnegie', 'Vikram Negi']
+# print(math.grades)
+# print(math.getGrades(s1))
+
+# print(type(s1) == Student)  # True
+# print(isinstance(s1, Student))  # True
+
+print(gradeReport(math))
