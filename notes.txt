@@ -235,7 +235,7 @@ We can define new exceptions by creating a subclass of the built-in-class Except
 
 An abstract data type is a set of objects and the operations on those objects.
 
-Functions defined within a class defination is called a method, or a method attribute of the class. Similarly, if we define a variable within a class it becomes a class variable.
+Functions defined within a class definition is called a method, or a method attribute of the class. Similarly, if we define a variable within a class it becomes a class variable.
 
 When we instantiate a class, we trigger call the __init__() method. If a instance variable is declared within the constructor function, then the value assigned becomes the data attribute of the class instance.
 
@@ -252,3 +252,12 @@ Inheritance allows us to create a type hierarchy in which each type inherits att
 When defining a subclass, think of it as extending the behavior of their superclass. As we can add new attributes or override attributes inherited from the superclass.
 
 If client code works correctly using an instance of the supertype, it should also work correctly when an instance of the subtype is substitued for the instance of the supertype. But not necessarily the other way round.
+
+Some programming languages lik Java and C++ provide mechanisms for enforcing information hiding. Programmers can make the data attributes of a class invisible to the user, thus require that the data be accessed only through the object's methods.
+
+> vik.lastName  # Direct access to data attribute
+  vik.getLastName()  # Indirect access to data attribute or sometimes even a copy of the data attribute
+
+This is a flaw in Python, as it lets programs read instance and class variables from outside the class definition that means user/client can change or even add important data attributes from outside the class, which can produce a runtime error.
+
+A disciplined programmer can simply follow the sensible rule of not direcly accessing data attributes from outside the class in which they are defined.
