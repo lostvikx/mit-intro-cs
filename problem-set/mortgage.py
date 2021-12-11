@@ -1,4 +1,4 @@
-# A cool mortgage calculator!
+# Absolute crap.
 
 def findPayment(loan:float, rate:float, months:int) -> float:
   """Assumes loan and rate are floats, while months is int.
