@@ -243,7 +243,14 @@ When data attributes are associated with a class we call them class variables. W
 
 Data abstractions encourages one to think about programming as a process of combining relatively large chunks, which leads us to think of the essence of programming as a process of composing abstractions, rather than individual lines of code.
 
-Directly accessing instance variables is considered poor form of programming and should be avoided. Why though?
+> c = Coordinate(3, 4) # Coordinate Type
+  zero = Coordinate(0, 0) # Origin
+
+  # Both are the same.
+  print(c.getDistance(zero))
+  print(Coordinate.getDistance(c, zero))
+
+Directly accessing instance variables is considered poor form of programming and should be avoided.
 
 Indian is a subclass of Human, and therefore inherits the attributes of its superclass.
 
@@ -262,8 +269,8 @@ This is a flaw in Python, as it lets programs read instance and class variables 
 
 A disciplined programmer can simply follow the sensible rule of not direcly accessing data attributes from outside the class in which they are defined.
 
-
 Yield Statements
 The presence of a yield statement tells that the function is a generator. Generators are typically used in conjunction with for statements.
 
 A for loop can iterate over the values provided by a method regardless of whether the method returns a list of values or yields a single value at a time.
+
