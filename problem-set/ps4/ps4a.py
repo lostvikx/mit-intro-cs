@@ -1,7 +1,7 @@
 # Problem Set 4A
 # Name: Vikram S. Negi
 # Collaborators: None
-# Time Spent: 02:50 hrs
+# Time Spent: 03:00 hrs
 
 def get_permutations(sequence):
   '''
