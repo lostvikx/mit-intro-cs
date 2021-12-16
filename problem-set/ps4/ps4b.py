@@ -54,6 +54,7 @@ def get_story_string():
   f = open("story.txt", "r")
   story = str(f.read())
   f.close()
+
   return story
 
 ### END HELPER CODE ###
@@ -307,8 +308,10 @@ if __name__ == '__main__':
   ciphertext3 = CiphertextMessage(output3)
   print("\n---CiperTest 3---")
   print('Expected Output:', (26-17, 'Would you like to go on a date with me?'))
-  print('Actual Output:', ciphertext3.decrypt_message())
+  print('Actual Output:', ciphertext3.decrypt_message(), end="\n\n")
 
 
   #TODO: best shift value and unencrypted story 
-  
+  story_text = get_story_string()
+  cipherStory = CiphertextMessage(story_text)
+  print("Output:", cipherStory.decrypt_message())
