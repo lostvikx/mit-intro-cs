@@ -1,7 +1,7 @@
 # Problem Set 4B
 # Name: Vikram S. Negi
 # Collaborators: None
-# Time Spent: 01:30
+# Time Spent: 02:30
 
 import string
 from copy import deepcopy
