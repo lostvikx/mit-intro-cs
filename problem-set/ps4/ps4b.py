@@ -1,7 +1,7 @@
 # Problem Set 4B
 # Name: Vikram S. Negi
 # Collaborators: None
-# Time Spent: 01:00
+# Time Spent: 01:30
 
 import string
 
@@ -150,9 +150,10 @@ class Message(object):
     return shifted_text
 
 
-hello = Message("Hello, World!")
-print(hello.build_shift_dict(4))
-print(hello.apply_shift(4))
+# hello = Message("Hello, World!")
+# print(hello.build_shift_dict(4))
+# print(hello.apply_shift(4))
+# print(hello.get_message_text())
 
 class PlaintextMessage(Message):
   def __init__(self, text, shift):
