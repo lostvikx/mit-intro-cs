@@ -17,14 +17,14 @@ def load_words(file_name):
   Depending on the size of the word list, this function may
   take a while to finish.
   '''
-  print("Loading word list from file...")
+  # print("Loading word list from file...")
   # inFile: file
   inFile = open(file_name, 'r')
   # wordlist: list of strings
   wordlist = []
   for line in inFile:
     wordlist.extend([word.lower() for word in line.split(' ')])
-  print("  ", len(wordlist), "words loaded.")
+  # print("  ", len(wordlist), "words loaded.")
   return wordlist
 
 def is_word(word_list, word):
@@ -174,8 +174,8 @@ class PlaintextMessage(Message):
     '''
     super().__init__(text)
     self.shift = shift
-    self.encryption_dict = Message.build_shift_dict(self.shift)
-    self.message_text_encrypted = Message.apply_shift(self.shift)
+    self.encryption_dict = super().build_shift_dict(self.shift)
+    self.message_text_encrypted = super().apply_shift(self.shift)
 
   def get_shift(self):
     '''
@@ -274,18 +274,41 @@ class CiphertextMessage(Message):
 
 if __name__ == '__main__':
 
-  #    #Example test case (PlaintextMessage)
-  #    plaintext = PlaintextMessage('hello', 2)
-  #    print('Expected Output: jgnnq')
-  #    print('Actual Output:', plaintext.get_message_text_encrypted())
-  #
-  #    #Example test case (CiphertextMessage)
-  #    ciphertext = CiphertextMessage('jgnnq')
-  #    print('Expected Output:', (24, 'hello'))
-  #    print('Actual Output:', ciphertext.decrypt_message())
-
   #TODO: WRITE YOUR TEST CASES HERE
+  #Test case (PlaintextMessage)
+  plaintext1 = PlaintextMessage('hello', 2)
+  print("\n---PlainTest 1---")
+  print('Expected Output: jgnnq')
+  print('Actual Output:', plaintext1.get_message_text_encrypted())
+
+  plaintext2 = PlaintextMessage('Hello World, this is me Vikram!', 12)
+  print("\n---PlainTest 2---")
+  print('Expected Output: Tqxxa Iadxp, ftue ue yq Huwdmy!')
+  output2 = plaintext2.get_message_text_encrypted()
+  print('Actual Output:', output2)
+
+  print("\n---PlainTest 3---")
+  plaintext3 = PlaintextMessage('Would you like to go on a date with me?', 17)
+  print('Expected Output: Nflcu pfl czbv kf xf fe r urkv nzky dv?')
+  output3 = plaintext3.get_message_text_encrypted()
+  print('Actual Output:', output3)
+
+  #Test case (CiphertextMessage)
+  ciphertext1 = CiphertextMessage('jgnnq')
+  print("\n---CiperTest 1---")
+  print('Expected Output:', (24, 'hello'))
+  print('Actual Output:', ciphertext1.decrypt_message())
+
+  ciphertext2 = CiphertextMessage(output2)
+  print("\n---CiperTest 2---")
+  print('Expected Output:', (26-12, 'Hello World, this is me Vikram!'))
+  print('Actual Output:', ciphertext2.decrypt_message())
+
+  ciphertext3 = CiphertextMessage(output3)
+  print("\n---CiperTest 3---")
+  print('Expected Output:', (26-17, 'Would you like to go on a date with me?'))
+  print('Actual Output:', ciphertext3.decrypt_message())
+
 
   #TODO: best shift value and unencrypted story 
-
-  pass #delete this line and replace with your code here
+  
