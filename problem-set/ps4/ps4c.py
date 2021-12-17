@@ -1,7 +1,7 @@
 # Problem Set 4C
 # Name: Vikram S. Negi
 # Collaborators: None
-# Time Spent: 00:00
+# Time Spent: 02:00
 
 import string
 from ps4a import get_permutations
