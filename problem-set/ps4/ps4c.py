@@ -137,15 +137,17 @@ class SubMessage(object):
       upper = False
 
       if letter in string.ascii_uppercase:
+        # print(string.ascii_uppercase, "Letter:", letter)
+        # breakpoint()
         upper = True
 
       try:
-        change_letter = transpose_dict[letter]
+        change_letter = transpose_dict[letter.lower()]
         
         if upper:
-          change_letter = change_letter.upper()
-
-        encrypted_message += change_letter
+          encrypted_message += change_letter.upper()
+        else:
+          encrypted_message += change_letter
       except KeyError:
         encrypted_message += letter
       except:
@@ -198,29 +200,52 @@ class EncryptedSubMessage(SubMessage):
         if is_word(self.valid_words, word):
           score += 1
       
-      track_best_guess.append((decrypted_message, score))
+      track_best_guess.append((decrypted_message, score, sequence))
 
-    # best_guess = track_best_guess.sort(key=lambda x: x[1], reverse=True)
+    track_best_guess.sort(key=lambda x: x[1], reverse=True)
 
-    return track_best_guess
+    # return track_best_guess # For Debugging
+    if track_best_guess[0][1] == 0:
+      return self.message_text
+    else:
+      return track_best_guess[0][0]
 
 
-hello = SubMessage("Hello, World!")
-trans_dict = hello.build_transpose_dict("eaiuo")
 
-enc_mess = EncryptedSubMessage(hello.apply_transpose(trans_dict))
-print(enc_mess.decrypt_message())
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 
-# # Example test case
-#   message = SubMessage("Hello World!")
-#   permutation = "eaiuo"
-#   enc_dict = message.build_transpose_dict(permutation)
-#   print("Original message:", message.get_message_text(), "Permutation:", permutation)
-#   print("Expected encryption:", "Hallu Wurld!")
-#   print("Actual encryption:", message.apply_transpose(enc_dict))
-#   enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
-#   print("Decrypted message:", enc_message.decrypt_message())
+# Example test case
+  # message = SubMessage("Hello World!")
+  # permutation = "eaiuo"
+  # enc_dict = message.build_transpose_dict(permutation)
+  # print("Original message:", message.get_message_text(), "Permutation:", permutation)
+  # print("Expected encryption:", "Hallu Wurld!")
+  # print("Actual encryption:", message.apply_transpose(enc_dict))
+  # enc_message = EncryptedSubMessage(message.apply_transpose(enc_dict))
+  # print("Decrypted message:", enc_message.decrypt_message())
 
-#   #TODO: WRITE YOUR TEST CASES HERE
+  #TODO: WRITE YOUR TEST CASES HERE
+  # Test 1
+  print("\n---SubMessage Test 1---")
+  test_message1 = SubMessage("Anime is the greatest thing happened to humanity.")
+  perm1 = "eioua"
+  enc_dict1 = test_message1.build_transpose_dict(perm1)
+  print(f"Original message: {test_message1.get_message_text()} Permutation: {perm1}")
+  print("Expected encryption: Enomi os thi grietist thong heppinid tu hamenoty.")
+  print(f"Actual encryption: {test_message1.apply_transpose(enc_dict1)}")
+  print("\n---EncryptedSubMessage Test 1---")
+  enc_mess = EncryptedSubMessage(test_message1.apply_transpose(enc_dict1))
+  print(f"Decrypted message: {enc_mess.decrypt_message()}", end="\n\n")
+
+  # Test 2
+  print("\n---SubMessage Test 2---")
+  test_message2 = SubMessage("To find something new, one must have the courage to lose sight of the shore.")
+  perm2 = "uioae"
+  enc_dict2 = test_message2.build_transpose_dict(perm2)
+  print(f"Original message: {test_message2.get_message_text()} Permutation: {perm2}")
+  print("Expected encryption: Ta fond samithong niw, ani mest huvi thi caerugi ta lasi soght af thi shari.")
+  print(f"Actual encryption: {test_message2.apply_transpose(enc_dict2)}")
+  print("\n---EncryptedSubMessage Test 2---")
+  enc_mess = EncryptedSubMessage(test_message2.apply_transpose(enc_dict2))
+  print(f"Decrypted message: {enc_mess.decrypt_message()}", end="\n\n")
