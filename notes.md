@@ -1,38 +1,46 @@
-What is computation?
-Computers don't know anything. They only do what you tell them to do.
+# Notes for MIT Intro to CS
 
-Types of knowledge -
-> Declarative knowledge is statement of fact.
-> Imperative knowledge is recipe or "how to". The sequence of steps.
+This is what I have learned by watching the online lectures, reading the textbook, and solving the problem-set questions.
 
-A numerical example -
-> Declarative: 
+## What is computation?
+> Computers don't know anything. They only do what you tell them to do.
+
+## Types of knowledge:
+* Declarative knowledge is statement of fact.
+* Imperative knowledge is recipe or "how to". The sequence of steps.
+
+## A numerical example:
+### Declarative:
 1. Square root of a number x is y such that x * x = y
 
-> Imperative: 
+### Imperative: 
 1. Start with a guess g.
 2. If g*g is close enough, stop and say g is the answer.
 3. Else make a new guess by averaging g and x/g.
 4. Using the new number, repeat the process until close enough.
 
-What is a recipe?
+## What is a recipe?
 1. Sequence of simple steps.
 2. Flow of control porcess that specifies when each step is excuted.
 3. A means of determining when to stop.
 4. This is an algorithm.
 
-# Everything is an object in Python.
+## Everything is an object in Python.
 
-Changing Bindings
-> pi = 3.14
+Changing Bindings:
+
+```python
+  pi = 3.14
   r = 2.2
   area = pi * (r**2)
   r += 1
+```
 
-The old r value gets lost, Python has an automatic garbage collector.
+The old `r` value gets lost, Python has an automatic garbage collector.
 
-Python's garbage collector runs during program execution and is triggered when an object's reference count reaches zero.
+Python's **garbage collector** runs during program execution and is triggered when an object's reference count reaches zero.
 
+## What is an algorithm?
 An algorithm is a finite list of instructions that describe a computation that when executed on a provided set of inputs will proceed through a set of well-defined states and eventually produce an output.
 
 The first truly modern computer was the Manchester Mark 1. It was a stored-program computer. Such a computer stores (and manipulates) a sequence of instructions, and has a set of elements that will execute any instructions in that sequence.
@@ -41,51 +49,66 @@ Within the computer, values of type float are stored in the computer as floating
 
 Objects and operators can be combined to form expressions, each of which evaluates to some type. This is refered to as the value of the expression.
 
-> 3 + 2 == 5 # int
-> 3.0 + 2.0 == 5.0 # float 
+```python
+  3 + 2 == 5 # int
+  3.0 + 2.0 == 5.0 # float 
+```
+
+### Input function
 
 Using the input function, the program pauses and waits for the user to enter something. Anything that the user enters, a number or float or string, becomes a string in the program.
 
-Juliet: "What's in the name? That which we call a rose by any other name would smell as sweet."
+Juliet: "What's in the name? That which we call a rose by any other name would smell as sweet".
 
 Consider the two code fragments:
-> a = 3.14      pi = 3.14
-> b = 11.20     diameter = 11.20
-> c = a*(b**2)  area = pi*(diameter**2)
+
+```
+  a = 3.14         pi = 3.14
+  b = 11.20        diameter = 11.20
+  c = a*(b**2)     area = pi*(diameter**2)
+```
 
 When we read the fragment on the left, there is no a priori reason to suspect that anything is amiss. However, a quick glance at the code on the right should prompt us to be suspicious that something is wrong.
 
 When a float is converted to an int, the number is truncated (not rounded but floored), e.g., the value of float 4.91 is the int 4.
 
 Slice:
-> foo = "abc"
+
+```python
+  foo = "abc"
   foo[0] == "a"
   foo[-1] == "c"
   foo[-len(foo)] == "a"
+```
 
-range(start=, stop=, step=)
-slice[start:stop:step]
-
+```python
+  range(start=, stop=, step=)
+  slice[start:stop:step]
+```
 Strings are immutable.
-> bar = "hello"
+
+```python
+  bar = "hello"
   bar[0] = "y"  # Gives an error
   bar = "y" + bar[1:] + "w"  # This works!
+```
 
-It is almost always more appropriate to ask whether two floating point values are close enough to each other, not whether they are identical. So, for example, it is better to write abs(x-y) < 0.0001, rather than x == y.
+It is almost always more appropriate to ask whether two floating point values are close enough to each other, not whether they are identical. So, for example, it is better to write `abs(x-y) < 0.0001`, rather than `x == y`.
 
 Understanding Scope Details:
---Code--
-def g(x):
-  def h():
-    x = "abc"
-  x += 1
-  print("g: x =", x)
-  h()
-  return x
 
-x = 3
-z = g(x)
-----
+```python
+  def g(x):
+    def h():
+      x = "abc"
+    x += 1
+    print("g: x =", x)
+    h()
+    return x
+
+  x = 3
+  z = g(x)
+```
 
 The code inside functions are ignored, until they are called or invoked.
 
@@ -274,3 +297,5 @@ The presence of a yield statement tells that the function is a generator. Genera
 
 A for loop can iterate over the values provided by a method regardless of whether the method returns a list of values or yields a single value at a time.
 
+Introduction to Algorithmic Complexity
+ 
