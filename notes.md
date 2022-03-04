@@ -349,18 +349,21 @@ The presence of a yield statement tells that the function is a generator. Genera
 
 A for loop can iterate over the values provided by a method regardless of whether the method returns a list of values or yields a single value at a time.
 
-<<<<<<< HEAD:notes.txt
-Understanding Program Efficiency:
+## Introduction to Algorithmic Complexity
+
+### Understanding Program Efficiency:
+
 Why do we need to understand the efficiency of our algorithms?
-Simple answer because it matters! Size and problems are getting huge, we need efficiency algorithms.
 
-We need to understand how algorithm design choices affects the cost accosiated with it.
+* Simple answer because it matters! 
+* Size and problems are getting huge, we need efficiency algorithms.
+* We need to understand how algorithm design choices affects the cost accosiated with it.
 
-Two types of efficiency: Time & Storage.
+###  Two types of efficiency: Time & Storage
 
 By using abstract notion of "order of growth" we can evaluate the efficiency of programs. It will argue that this is the most appropriate way of assessing the impact of choices of algorithm in solving a problem; and in measuring the inherent difficulty in solving a problem.
 
-GOAL: to evaluate different algorithms
+**GOAL**: to evaluate different algorithms
 * count depends on algorithm
 * count depends on implementations
 * count independent of computers
@@ -372,45 +375,40 @@ We assume that these steps take constant time:
 * assignments
 * accessing objects in memory
 
+```python
 def c_to_f(c):
   return c * 9.0/5 +32  # 3ops
+```
 
-O(1) -> Constant Growth
+`O(1) -> Constant Growth`
 
+```python
 def mysum(x):
   total = 0  # 1ops
   for i in range(x + 1):  # 1op  # loop x times
     total += 1  # 2ops
   return total  # 1ops
+```
 
-mysum -> 3x + 2 ops
-O(x) -> Linear Growth
+`mysum -> 3x + 2 ops`
 
-We express efficiency is terms of size of input.
+`O(x) -> Linear Growth`
 
-Law of addition for O():
+We express efficiency in terms of size of input.
+
+### Law of addition for O():
 * used with sequential statements
-* O(f(n)) + O(g(n)) = O(f(n) + g(n))
+* `O(f(n)) + O(g(n)) = O(f(n) + g(n))`
 
-Law of multiplication for O():
+### Law of multiplication for O():
 * used with nested statements
-* O(f(n)) * O(g(n)) = O(f(n) + g(n))
+* `O(f(n)) * O(g(n)) = O(f(n) + g(n))`
 
-{c = constant}
-O(1) -> Constant running time
-O(log(n)) -> Logarithmic running time
-O(n) -> Linear running time
-O(n*log(n)) -> Log-linear running time
-O(n**c) -> polynomial running time
-O(c**n) -> exponential running time
+Note: c == constant
 
-Constant Time List Access
-If list is all ints
-> ith element at
-> base + 4*i  # allocated fixed length, assumed 4 bytes
-> get the address in the memory of the first index of the list, add 4 times the i inputed to get the int at that index
-
-=======
-## Introduction to Algorithmic Complexity
->>>>>>> 311c516e8c260642fb6b1f01267db2144976732d:notes.md
-
+* `O(1)` -> Constant running time
+* `O(log(n))` -> Logarithmic running time
+* `O(n)` -> Linear running time
+* `O(n*log(n))` -> Log-linear running time
+* `O(n**c)` -> polynomial running time
+* `O(c**n)` -> exponential running time
