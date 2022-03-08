@@ -9,6 +9,7 @@ class PhraseTrigger():
     """
     Removes all the punctuations from a sentence and if phrase matches text, return True. Else False.
     """
+    result = False
 
     cleanText = text.lower()
 
@@ -39,9 +40,36 @@ class PhraseTrigger():
         i += 1
 
     if len(phraseIndexFound) == len(phraseList) and len(phraseIndexFound) > 0:
+
       print(phraseIndexFound)
 
-    # return result
+      if len(phraseIndexFound) == 1:
+        result = True
+      else:
+        if phraseIndexFound[-1] == max(phraseIndexFound):
+
+          gotIndex = None
+          resultsList = []
+          for index in phraseIndexFound:
+            if gotIndex == None:
+              gotIndex = index
+            else:
+              
+              if index - gotIndex == 1:
+                resultsList.append(True)
+              else:
+                resultsList.append(False)
+
+              gotIndex = index
+
+          if False in resultsList:
+            result = False
+          else:
+            result = True
+
+    print(result)
+    print("------\n")
+    return result
 
 # print(string.punctuation)
 testPhrase = PhraseTrigger("Purple Cow")
