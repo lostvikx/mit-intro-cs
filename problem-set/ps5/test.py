@@ -21,10 +21,10 @@ class PhraseTrigger():
     # return " ".join(cleanText.split())
 
     textList = cleanText.split()
-    print(textList)
+    # print(textList)
 
     phraseList = self.phrase.split()
-    print(phraseList)
+    # print(phraseList)
 
     phraseIndexFound = []
     phraseFoundCount = 0
@@ -41,7 +41,7 @@ class PhraseTrigger():
 
     if len(phraseIndexFound) == len(phraseList) and len(phraseIndexFound) > 0:
 
-      print(phraseIndexFound)
+      # print(phraseIndexFound)
 
       if len(phraseIndexFound) == 1:
         result = True
@@ -67,8 +67,8 @@ class PhraseTrigger():
           else:
             result = True
 
-    print(result)
-    print("------\n")
+    # print(result)
+    # print("------\n")
     return result
 
 # print(string.punctuation)
